@@ -1,0 +1,28 @@
+{
+    "id": "AC82FD70",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1686344256983.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "id": "39cfbcb796ad4369867a21c603d63851",
+        "name": "vacant",
+        "title": "vacant",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 425201762421,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1686344256983,
+    "read_only": false,
+    "read_only_alternatives": []
+}

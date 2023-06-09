@@ -1,0 +1,6 @@
+"0","import numpy as np"
+"0","py_arr = np.array([1, 2, 3, 4, 5])"
+"0","for item in py_arr:"
+"0","  print(item, end=', ')"
+"0",""
+"1","1, 2, 3, 4, 5, "

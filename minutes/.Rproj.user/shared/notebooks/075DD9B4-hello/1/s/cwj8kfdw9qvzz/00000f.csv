@@ -1,0 +1,20 @@
+"0","# renv::install(""reticulate"")"
+"0","library(reticulate)"
+"2","Warning: package ‘reticulate’ was built under R version 4.2.3"
+"0","# use_virtualenv(""C:/Users/Zachary.Palmore/GitHub/policy/.venv"")"
+"0","use_virtualenv(""r-reticulate"")"
+"2","ERROR: The requested version of Python
+"
+"2","('C:/Users/Zachary.Palmore/Documents/.virtualenvs/r-reticulate/Scripts/python.exe')
+"
+"2","cannot be used, as another version of Python
+"
+"2","('C:/Users/Zachary.Palmore/AppData/Local/Programs/Python/Python310/python.exe')
+"
+"2","has already been initialized. Please restart the R session if you
+"
+"2","need to attach reticulate to a different version of Python.
+"
+"2","Error in use_python(python, required = required) : 
+  failed to initialize requested version of Python
+"

@@ -1,0 +1,23 @@
+"0","#| echo: false"
+"0","# Packages"
+"0","import PyPDF2"
+"2","ModuleNotFoundError: No module named 'PyPDF2'
+"
+"0","def extract_text_from_pdf(file_path):"
+"0","    text = """""
+"0","    with open(file_path, 'rb') as file:"
+"0","        reader = PyPDF2.PdfReader(file)"
+"0","        num_pages = len(reader.pages)"
+"0","        for page_num in range(num_pages):"
+"0","            page = reader.pages[page_num]"
+"0","            text += page.extract_text()"
+"0","    return text"
+"0","    "
+"0","# Provide the path to your PDF file"
+"0","pdf_file_path = 'supervisors_minutes_010820.pdf'"
+"0","text = extract_text_from_pdf(pdf_file_path)"
+"2","NameError: name 'PyPDF2' is not defined
+"
+"0","print(text)"
+"2","NameError: name 'text' is not defined
+"

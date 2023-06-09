@@ -1,0 +1,9 @@
+In 2020, there are seperate files for public comments included online. 
+These files are not included in the minutes analysis. 
+Reasoning: 
+The public comments are not currently of interest in our study. 
+They would require a different combination of regular expressions to extract any information from them
+
+2021 Changed the formating. 
+File named: "20211103 Minutes CB" 
+was written by linda
