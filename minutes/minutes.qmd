@@ -460,30 +460,31 @@ source("functions2.R")
 files <- list.files(path ="pdfs", "\\.pdf")
 # Place this in a for loop
 # Only runs pdf reader 1 time 
-file_path <- paste0("pdfs/",files[[13]])
+file_path <- paste0("pdfs/",files[[12]])
 text <- pdftools::pdf_text(file_path)
 
-list(
-  # Extract the date from the pdf
-  date = c("date"), # not an if statement bc every pdf should have it
-  
-  vacant = (if(sum(is.na(extract_vacant(text))) == 0){
-    extract_vacant(text)
-  }),
-  absent = (if(sum(is.na(extract_absent(text))) == 0){
-    extract_absent(text)
-  }),
-  present = (if(sum(is.na(extract_present(text))) == 0){
-    extract_present(text)
-  })
-  
-)
+# list_extraction <- list(
+#   # Extract the date from the pdf
+#   date = c("01-01-2099"), # not an if statement bc every pdf should have it
+#   
+#   vacant = (if(sum(is.na(extract_vacant(text))) == 0){
+#     extract_vacant(text)
+#   }),
+#   absent = (if(sum(is.na(extract_absent(text))) == 0){
+#     extract_absent(text)
+#   }),
+#   present = (if(sum(is.na(extract_present(text))) == 0){
+#     extract_present(text)
+#   })
+#   
+# )
 
 # rbind() but for lists? 
 # Convert list into data frame? 
-do.call(rbind.data.frame, list(
+
+tmp <- do.call(data.frame, list(
   # Extract the date from the pdf
-  date = c("date"), # not an if statement bc every pdf should have it
+  date = c("01-01-2099"), # not an if statement bc every pdf should have it
   
   vacant = (if(sum(is.na(extract_vacant(text))) == 0){
     extract_vacant(text)
@@ -498,8 +499,9 @@ do.call(rbind.data.frame, list(
   )
 )
 
-
+df <- rbind(df, tmp)
 
 ```
+
 
 
