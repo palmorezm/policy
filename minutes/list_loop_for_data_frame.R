@@ -3,8 +3,9 @@
 require(pdftools)
 require(stringr)
 source("functions2.R")
-files <- list.files(path ="pdf2", "\\.pdf")
-file_path <- paste0("pdf2/",files[[1]])
+folder <- "pdf2"
+files <- list.files(path =folder, "\\.pdf")
+file_path <- paste0(folder, "/", files[[1]])
 text <- pdftools::pdf_text(file_path)
 status <- list(
   vacant = (if(!is.null(
@@ -39,8 +40,9 @@ present <- data.frame(supervisor = status$present,
                       status ="present")
 df <- rbind(vacant, absent, present)
 
+
 for(i in 2:length(files)){
-  file_path <- paste0("pdf2/",files[[i]])
+  file_path <- paste0(folder, "/", files[[i]])
   text <- pdftools::pdf_text(file_path)
   status <- list(
     vacant = (if(!is.null(
@@ -76,17 +78,10 @@ for(i in 2:length(files)){
   df <- rbind(df, vacant, absent, present)
 }
 
-df$date2 <- as.Date(df$date, "%B %d, %Y")
+# df$date2 <- as.Date(df$date, "%B %d, %Y")
+# df$supervisor <- factor(df$supervisor)
+# levels(df$supervisor)
 
-df$supervisor <- factor(df$supervisor)
-levels(df$supervisor)
-library(ggplot2)
-library(dplyr)
-df %>% 
-  filter(supervisor == "BEAVER" |
-           supervisor == "PEER" | 
-           supervisor == "DIESTLER") %>% 
-  ggplot(aes(status, fill = status)) + 
-  geom_bar() + facet_wrap(~supervisor) 
+ 
 
   
