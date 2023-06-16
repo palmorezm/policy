@@ -30,18 +30,66 @@ tmp <- data.frame(matrix(c("BEAVER",
 df <- rbind(df, tmp)
 # Change string to just FIZZEL who was absent
 df$supervisor[which(df$supervisor == "SUPERVISORBEAVERARRIVEDAT6:35PM.SUPERVISORSFIZZELL")] <- "FIZZEL"
+
+
+
+source("do_the_loop.R")
 df$date2 <- as.Date(df$date, "%B %d, %Y")
 df$supervisor <- factor(df$supervisor)
 
 library(ggplot2)
 theme_set(theme_minimal())
 library(dplyr)
-df %>% 
-  filter(supervisor == "BEAVER" |
-           supervisor == "PEER" | 
-           supervisor == "DIESTLER") %>% 
-  ggplot(aes(status, fill = status)) + 
-  geom_bar() + facet_wrap(~supervisor) 
 
-# Cleaning 2011 folder
+# Length of Tenure by Supervisor
+df %>% 
+  filter(supervisor == "DAVIS" |
+           supervisor == "PEER" |
+           supervisor == "FOX" | 
+           supervisor == "DIESTLER" | 
+           supervisor == "ARNOLD" | 
+           supervisor == "BEAVER") %>%
+  ggplot(aes(date2, supervisor)) + geom_line() + 
+  scale_x_date(date_breaks = "2 years")
+
+# Absenteeism 
+tmp <- df %>% 
+  filter(supervisor == "DAVIS" |
+           supervisor == "PEER" |
+           supervisor == "FOX" | 
+           supervisor == "DIESTLER" | 
+           supervisor == "ARNOLD" | 
+           supervisor == "BEAVER") %>% 
+  group_by(supervisor, status) %>% 
+  reframe(tally = n()) 
+df %>% 
+  filter(supervisor == "DAVIS" |
+           supervisor == "PEER" |
+           supervisor == "FOX" | 
+           supervisor == "DIESTLER" | 
+           supervisor == "ARNOLD" | 
+           supervisor == "BEAVER") %>% 
+  group_by(supervisor) %>% 
+  reframe(total = n()) %>% 
+  left_join(tmp, by = "supervisor", multiple = "all") %>% 
+  mutate("percent" = (tally / total)*100) 
+
+# Column chart of absences by supervisor
+df %>% 
+  # filter(supervisor == "BEAVER" |
+  #          supervisor == "PEER" | 
+  #          supervisor == "DIESTLER") %>% 
+  filter(supervisor == "DAVIS" |
+           supervisor == "PEER" |
+           supervisor == "FOX" | 
+           supervisor == "DIESTLER" | 
+           supervisor == "ARNOLD" | 
+           supervisor == "BEAVER") %>% 
+  ggplot(aes(status, fill = status)) + 
+  geom_bar() + facet_wrap(~supervisor)
+
+
+
+
+
 
