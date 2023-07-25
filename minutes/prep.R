@@ -2,7 +2,7 @@
 # prep
 
 # Extract the data from the pdfs
-source("do_the_loop.R")
+source("do_the_loop.r")
 
 # Assign a "No Vacancy" to records/dates/minutes where all districts were filled 
 df[which(is.na(df$supervisor) & df$status == "vacant"),][1] <- "NO VACANCY"

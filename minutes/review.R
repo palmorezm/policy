@@ -33,7 +33,7 @@ df$supervisor[which(df$supervisor == "SUPERVISORBEAVERARRIVEDAT6:35PM.SUPERVISOR
 
 
 
-source("do_the_loop.R")
+source("do_the_loop.r")
 df$date2 <- as.Date(df$date, "%B %d, %Y")
 df$supervisor <- factor(df$supervisor)
 

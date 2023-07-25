@@ -2,7 +2,7 @@
 # List Loop to Data Frame
 require(pdftools)
 require(stringr)
-source("functions2.R")
+source("functions2.r")
 folder <- "pdf2"
 files <- list.files(path =folder, "\\.pdf")
 file_path <- paste0(folder, "/", files[[1]])

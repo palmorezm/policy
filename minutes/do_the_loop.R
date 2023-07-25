@@ -3,7 +3,7 @@
 # 2010 - 2021 (After Testing each individually in loop_2012.R)
 require(pdftools)
 require(stringr)
-source("functions3.R")
+source("functions3.r")
 folder <- "all"
 files <- list.files(path =folder, "\\.pdf")
 file_path <- paste0(folder, "/", files[[2]])
@@ -31,6 +31,7 @@ status <- list(
     NA
   })
 )
+
 vacant <- data.frame(supervisor = status$vacant, 
                      date = extract_date(text), 
                      status ="vacant")
@@ -80,7 +81,8 @@ for(i in 2:length(files)){
   print(paste("PDF", i, "was processed"))
 }
 
-rm(list = c("absent", "present", "vacant", "status"))
-rm(list = c("file_path", "files", "folder", "i", "text"))
-rm(list = c("extract_absent", "extract_date", 
-            "extract_present", "extract_vacant"))
+rm(list=c(ls()[which(ls() != "df")]))
+# rm(list = c("absent", "present", "vacant", "status"))
+# rm(list = c("file_path", "files", "folder", "i", "text"))
+# rm(list = c("extract_absent", "extract_date", 
+#             "extract_present", "extract_vacant"))
