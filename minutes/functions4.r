@@ -15,8 +15,3 @@ extract_alphas <- function(txt){
   return(txt3)
 }
 
-
-
-extract_nb <- function(txt){
-  
-}

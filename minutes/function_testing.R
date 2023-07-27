@@ -139,64 +139,93 @@ string1 <- str_remove_all(
   str_extract_all(
     str_extract(text4, "A[.].+B[.]"), "[:alnum:][.]")[[1]], "[.]")
 
-if(string1[2] == "1"){
-  str_extract(str_extract(text4, "A[.].+B[.]"), "A[.].+1[.]")
-} else {
-  str_extract(text4, "A[.].+B[.]")
-}
-
 # Identify Alpha(s)
 alphas <- extract_alphas(text)
 alphas <- str_remove_all(alphas[[1]], "[.]")
 alphas <- alphas[alphas == LETTERS]
 pattern <- paste0(alphas[1], "[.].+", alphas[(2)], "[.]")
 alphansubs <- str_extract_all(
-  str_extract(text4, pattern[1]), "[:alnum:][.]")
+  str_extract_all(text4, "[:alnum:][.]"), "[:alnum:][.]")
+string2 <- str_remove_all(alphansubs[[1]], "[.]")
+string2[[2]]
 
+string2 <- str_remove_all(alphansubs[[1]], "[.]")
+
+alphas[length(alphas)]
+text2_pattern <- paste0(string2[1], "[.].+", string2[2], "[.]")
+str_extract(str_extract(text4, ), text2_pattern[1])
+str_extract()
+
+# Append a letter to the end of the text4 
+# Add this letter to the alphas
+# loop through each letter to extract its betweens
+text4z <- paste(text4, "Z.")
+string2[length(string2)+1] <- "Z"
+alphas[length(alphas)+1] <- "Z"
+
+# Extract everything between alphas
+# Identify sub_alpha numbers
+# Extract everything from alpha A to sub_alpha 1
+# Repeat until reaching B
+
+# Extract everything between alphas
+alpha_pattern <- paste0(alphas[1], "[.].+", alphas[(1+1)], "[.]")
+alpha_text <- str_extract(text4z, alpha_pattern[1])
+# Identify sub_alpha numbers
+string <- str_remove_all(str_extract_all(alpha_text, "[:digit:][.]|[:digit:]\\)")[[1]], "[.]")
+paste(alpha[1], "")
+
+string2_alphas <- str__all(string2, "[:alpha:]")
+string2_alphas <- unlist(string2_alphas)
+string2_alphas
+
+if(string2[2] == "1"){
+  str_extract(str_extract(text4, "A[.].+B[.]"), "A[.].+1[.]")
+} else {
+  str_extract(text4, "A[.].+B[.]")
+} 
+
+
+alpha_pattern <- paste0(alphas[1], "[.].+", alphas[(2)], "[.]")
 string1 <- str_remove_all(
   str_extract_all(
-    str_extract(text4, "A[.].+B[.]"), "[:alnum:][.]")[[1]], "[.]")
+    str_extract(text4, alpha_pattern[1]), "[:alnum:][.]")[[1]], "[.]")
+text_pattern <- paste0(string1[1], "[.].+", string1[2], "[.]")
+str_extract(str_extract(text4, alpha_pattern[1]), text_pattern[1])
 
 
 
-
+output <- ""
 for(i in 1:length(alphas)){
-  pattern <- paste0(alphas[i], "[.].+", alphas[(i+1)], "[.]")
-  string <- str_extract(text5, pattern[1])
-  output <- rbind(output, string)
+  alpha_pattern <- paste0(alphas[i], "[.].+", alphas[(i+1)], "[.]")
+  string1 <- str_remove_all(
+    str_extract_all(
+      str_extract(text4, alpha_pattern[1]), "[:alnum:][.]")[[1]], "[.]")
+  for(z in 1:length(string1)){
+    text_pattern <- paste0(string1[z], "[.].+", string1[z+1], "[.]")
+    text <- str_extract(
+      str_extract(text4, alpha_pattern[1]),
+      text_pattern[1])
+    output <- rbind(output, text)
+  }
 }
 
 
 
-extract_present <- function(txt){
-  txt1 <- toupper(txt) 
-  # Remove whitespace around the text and new lines (I think)
-  txt2 <- str_squish(txt1)
-  # Pull anything from "ROLL CALL." that is followed by "QUORUM"
-  txt3 <- str_extract(txt2, "ROLL CALL\\. ?.+(?=QUORUM)")
-  # Find the names of the supervisors who were present or the supervisor who was present 
-  txt4 <- str_extract(txt3, "SUPERVISOR.+WERE\\s+PRESENT|SUPERVISOR.+WAS\\s+PRESENT")
-  # Replace the word AND with a comma for seperation (will create an empty space)
-  # This empty space will look like ", ," with or without the actuall " ".
-  txt5 <- str_replace_all(txt4, " AND", ",")
-  # Remove where it says either SUPERVISOR or SUPERVISORS
-  txt6 <- str_remove(txt5, "SUPERVISOR |SUPERVISORS ")
-  # Remove where it says either WERE PRESENT or WAS PRESENT
-  txt7 <- str_remove(txt6, "WERE PRESENT|WAS PRESENT")
-  # Remove all extra whitespace (It does not work the same with str_squish() )
-  txt8 <- str_remove_all(txt7, "\\s")
-  # Split the string into smaller strings deliminated by commas
-  txt9 <- str_split(txt8, ",")
-  # Return the first set of values in the list of strings 
-  return(txt9[[1]])
-  # This still requires: 
-  #   Every pdf must have the characters "ROLL CALL." followed by
-  #     the supervisors who were present, absent, and/or vacant 
-  #     and the characters "QUORUM" after all of it
-  # This is how we select the roll call area
-  #   Every pdf must say either WERE or WAS PRESENT 
-  # Additionally:
-  #   Removing any empty/blank names between commas
-  #   
+results <- list()
+for(i in 1:length(alphas)){
+  alpha_pattern <- paste0(alphas[i], "[.].+", alphas[(i+1)], "[.]")
+  string1 <- str_remove_all(
+    str_extract_all(
+      str_extract(text4, alpha_pattern[1]), "[:alnum:][.]")[[1]], "[.]")
+  results <- rbind(results, string1)
 }
+
+string2 <- str_remove_all(
+  str_extract_all(
+    str_extract_all(text4, "[:alnum:][.]"), "[:alnum:][.]")[[1]], "[.]")
+string2
+
+
+test <- na.omit(output)
 
