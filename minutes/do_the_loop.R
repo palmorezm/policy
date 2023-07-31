@@ -82,7 +82,3 @@ for(i in 2:length(files)){
 }
 
 rm(list=c(ls()[which(ls() != "df")]))
-# rm(list = c("absent", "present", "vacant", "status"))
-# rm(list = c("file_path", "files", "folder", "i", "text"))
-# rm(list = c("extract_absent", "extract_date", 
-#             "extract_present", "extract_vacant"))

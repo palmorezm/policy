@@ -25,3 +25,6 @@
 #   How many supervisors should we expect in each minutes? 
 #     - How many were extracted in each?
 #   Were there any missing minutes? 
+
+# 
+
