@@ -293,10 +293,13 @@ string2 <- str_remove_all(
     str_extract_all(text4, "[:alnum:][.]"), "[:alnum:][.]")[[1]], "[.]")
 string2
 
+text4 <- extract_alphas(text)
 
-test <- na.omit(output)
+text4z <- paste(text4, "Z.") # Add 
+# identify the alpha characters for searching and extracting
+alphas <- str_remove_all(extract_alphas(text)[[1]], "[.]")
+alphas[length(alphas)+1] <- "Z" # append z for last search
 
-test <- na.omit(output)[,1]
-
-extract_nb(text)
-
+str_remove_all(
+  str_extract_all(
+    str_extract_all(text4, "[:alnum:][.]"), "[:alnum:][.]")[[1]], "[.]")

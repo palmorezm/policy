@@ -17,7 +17,7 @@ output <- list(
       extract_nb(text)})
   ){extract_nb(text)} else{
     NA
-  }),
+  })
   # AYES Votes Here
   
   # No Votes Here
@@ -25,18 +25,28 @@ output <- list(
   # Abstain? Here
 )
 
-vacant <- data.frame(supervisor = ouput$policy, 
+policy <- data.frame(supervisor = output$policy, 
                      date = extract_date(text), 
-                     status ="new_business")
+                     item ="new_business")
 
-df <- rbind(vacant)
+df <- rbind(policy)
 
 df <- data.frame()
-for(i in 2:length(files)){
+for(i in 1:length(files)){
   file_path <- paste0(folder, "/", files[[i]])
   text <- pdftools::pdf_text(file_path)
-  results <- extract_nb(text)
-  df <- rbind(df, results)
+  output <- list(
+    policy = (if(!is.null(
+      if(sum(is.na(extract_nb(text))) == 0){
+        extract_nb(text)})
+    ){extract_nb(text)} else{
+      NA
+    })
+  )
+  policy <- data.frame(supervisor = output$policy, 
+                       date = extract_date(text), 
+                       item ="new_business")
+  df <- rbind(df, policy)
   # Inform Me of Status
   print(paste("PDF", i, "was processed"))
 }
